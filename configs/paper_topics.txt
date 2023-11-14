@@ -15,6 +15,7 @@ Inclusion Criteria:
     - Studies that provide novel insights or analytics into the compressibility of different model architectures or parameters.
  5. Studies 'scaling laws' in the context of neural networks. Scaling laws refer to the very clear power-law relationship between the size or computational power used to train a model and the performance of that model.
  6. Theoretical and methodological papers that introduce novel model merging techniques for LLMs or papers that reveal unexpected empirical results or deploy clever statistical methods in the model merging process.
+
 Exclusion Criteria:
  1. Papers primarily focused on applying existing methods to specific tasks or domains without methodological advancements.
  2. Works unrelated to LLMs or those not addressing test set contamination.
