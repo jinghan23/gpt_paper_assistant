@@ -1,27 +1,24 @@
-Inclusion Criteria:
- 1. Papers discussing novel improvements in Reinforcement Learning from Human Feedback (RLHF) or instruction-following. Examples include:
-    - Detailed methods to enhance RLHF or create new instruction-tuning datasets.
-    - Analytical studies aimed at understanding and advancing these fine-tuning methods.
-    - Papers must explicitly reference RLHF, instruction-following, or instruction-tuning.
- 2. Empirical works unveiling new methods to detect test set contamination or apply membership inference in LLMs. Examples include:
-    - New statistical techniques capable of identifying benchmark dataset contamination during pretraining.
-    - Generalizable membership inference methods tailored to LLMs with a strong theoretical backing.
- 3. Significant advancements in the field of diffusion language models, especially:
-    - Studies centered around LLMs operating as diffusion models.
-    - Particular emphasis on continuous diffusion processes, but discrete models are also of interest.
- 4. Papers presenting innovative methods or theoretical frameworks for compressing large language models. Examples include:
-    - Advanced techniques for pruning, quantization, knowledge distillation, weight sharing, factorization, or development of sparse models.
-    - Empirical results that demonstrate substantial improvements in model efficiency (such as size reduction, faster inference, or energy consumption) without compromising performance.
-    - Studies that provide novel insights or analytics into the compressibility of different model architectures or parameters.
- 5. Studies 'scaling laws' in the context of neural networks. Scaling laws refer to the very clear power-law relationship between the size or computational power used to train a model and the performance of that model.
- 6. Theoretical and methodological papers that introduce novel model merging techniques for LLMs or papers that reveal unexpected empirical results or deploy clever statistical methods in the model merging process.
-
-Exclusion Criteria:
- 1. Papers primarily focused on applying existing methods to specific tasks or domains without methodological advancements.
- 2. Works unrelated to LLMs or those not addressing test set contamination.
- 3. Research on image diffusion models (e.g., DALL-E, Stable Diffusion) and papers that do not discuss language models or text-specific applications.
- 4. Research not specifically addressing the compression of language models, including papers focusing solely on compression in other domains such as computer vision.
- 5. Papers where the central contribution is incremental or does not demonstrate a significant advance in the understanding or application of compression theory in language models.
+ 1. New methodological improvements to RLHF or instruction-following which are specific fine-tuning steps that are taken to make language models better at following user instructions across a range of tasks.
+    - Relevant: papers that discuss specific methods like RLHF, or instruction-tuning datasets, improving these methods, or analyzing them. Usually these papers will explicitly mention RLHF, instruction-following or instruction-tuning.
+    - Not relevant: papers about adaptation to some task. Simply following instructions or inputs are not sufficient.
+ 2. Shows new powerful test set contamination or membership inference methods for language models. Test set contamination is the phenomenon where a language model observes a benchmark dataset during pretraining.
+    - Relevant: test statistics that can detect contamination of benchmarks in language models. statistics that can provide guarantees are more interesting. membership inference methods that are general enough to apply to language models are also relevant.
+    - Not relevant: any papers that do not consider language models, or that do not consider test set contamination.
+ 3. Shows a significant advance in the performance of diffusion language models.
+    - Relevant: papers that study language models that are also diffusion models. Continuous diffusions are even more relevant, while discrete diffusions are less so.
+    - Not relevant: papers about image diffusions like DALL-E or Stable Diffusion, or papers that do not explicitly mention language models or applications to text.
+ 4. Describes new paradigms to evaluating open-ended text generation. Evaluating the outputs of language models is hard, especially in open-ended settings like for chatbots.
+    - Relevant: papers that fundamentally rethink language model evaluation -- especially by accounting for subjectivity or using adversaries.
+    - Not relevant: specific evaluations for specific tasks, identifying new properties or flaws of language models, or simply collecting new data.
+ 5. Conducts surveys or provides data into real-world usage and safety properties of language models.
+    - Relevant: papers that create new datasets or surveys on real-world usage of language models.
+    - Not relevant: papers that apply language models to new real-world tasks.
+ 6. Studies 'scaling laws' in the context of neural networks. Scaling laws refer to the very clear power-law relationship between the size or computational power used to train a model and the performance of that model.
+    - Relevant: theoretical or conceptual explanation behind scaling laws for language models.
+    - Not relevant: papers that have experiments at different model scales (but do not explicitly fit a scaling law) or papers that mention scaling laws, but the scaling laws are not the central subject of the paper
+ 7. Papers specifically discussing compression theory and its application to or within Large Language Models (LLMs), detailing the role of compression in enhancing model intelligence or performance, and exploring the theoretical underpinnings of this relationship.
+    - Relevant: Papers discussing information-theoretic approaches to understanding and measuring the performance of LLMs in terms of data compression.
+    - Not relevant: Exclude papers that do not make a clear connection between compression theory and LLMs, as well as those focusing on general optimization, hardware efficiency, or other unrelated enhancements.
 
  In suggesting papers to your friends, remember that they enjoy papers on statistical machine learning, and generative modeling in natural language processing.
  Your friends also like learning about surprising empirical results in language models, as well as clever statistical tricks.
