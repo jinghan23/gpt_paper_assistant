@@ -1,0 +1,27 @@
+Inclusion Criteria:
+ 1. Papers discussing novel improvements in Reinforcement Learning from Human Feedback (RLHF) or instruction-following. Examples include:
+    - Detailed methods to enhance RLHF or create new instruction-tuning datasets.
+    - Analytical studies aimed at understanding and advancing these fine-tuning methods.
+    - Papers must explicitly reference RLHF, instruction-following, or instruction-tuning.
+ 2. Empirical works unveiling new methods to detect test set contamination or apply membership inference in LLMs. Examples include:
+    - New statistical techniques capable of identifying benchmark dataset contamination during pretraining.
+    - Generalizable membership inference methods tailored to LLMs with a strong theoretical backing.
+ 3. Significant advancements in the field of diffusion language models, especially:
+    - Studies centered around LLMs operating as diffusion models.
+    - Particular emphasis on continuous diffusion processes, but discrete models are also of interest.
+ 4. Papers presenting innovative methods or theoretical frameworks for compressing large language models. Examples include:
+    - Advanced techniques for pruning, quantization, knowledge distillation, weight sharing, factorization, or development of sparse models.
+    - Empirical results that demonstrate substantial improvements in model efficiency (such as size reduction, faster inference, or energy consumption) without compromising performance.
+    - Studies that provide novel insights or analytics into the compressibility of different model architectures or parameters.
+ 5. Studies 'scaling laws' in the context of neural networks. Scaling laws refer to the very clear power-law relationship between the size or computational power used to train a model and the performance of that model.
+ 6. Theoretical and methodological papers that introduce novel model merging techniques for LLMs or papers that reveal unexpected empirical results or deploy clever statistical methods in the model merging process.
+Exclusion Criteria:
+ 1. Papers primarily focused on applying existing methods to specific tasks or domains without methodological advancements.
+ 2. Works unrelated to LLMs or those not addressing test set contamination.
+ 3. Research on image diffusion models (e.g., DALL-E, Stable Diffusion) and papers that do not discuss language models or text-specific applications.
+ 4. Research not specifically addressing the compression of language models, including papers focusing solely on compression in other domains such as computer vision.
+ 5. Papers where the central contribution is incremental or does not demonstrate a significant advance in the understanding or application of compression theory in language models.
+
+ In suggesting papers to your friends, remember that they enjoy papers on statistical machine learning, and generative modeling in natural language processing.
+ Your friends also like learning about surprising empirical results in language models, as well as clever statistical tricks.
+ They does not want to read papers that are about primarily applications of methods to specific domains.
