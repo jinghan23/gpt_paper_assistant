@@ -66,6 +66,7 @@ def call_chatgpt(full_prompt, openai_client, model):
         model=model,
         messages=[{"role": "user", "content": full_prompt}],
         temperature=0.0,
+        seed=0,
     )
 
 
@@ -118,24 +119,28 @@ def batched(items, batch_size):
 
 
 def filter_papers_by_title(
-    papers: List[Paper], base_prompt: str, criterion: str
+    papers, config, openai_client, base_prompt, criterion
 ) -> List[Paper]:
-    filter_postfix = "Please identify any papers that you are absolutely sure your friend will not enjoy, formatted as a list of arxiv ids like [ID1, ID2, ID3..]"
+    filter_postfix = 'Identify any papers that are absolutely and completely irrelavent to the criteria, and you are absolutely sure your friend will not enjoy, formatted as a list of arxiv ids like ["ID1", "ID2", "ID3"..]. Be extremely cautious, and if you are unsure at all, do not add a paper in this list. You will check it in detail later.\n Directly respond with the list, do not add ANY extra text before or after the list. Even if every paper seems irrelevant, please keep at least TWO papers'
     batches_of_papers = batched(papers, 20)
     final_list = []
+    cost = 0
     for batch in batches_of_papers:
         papers_string = "".join([paper_to_titles(paper) for paper in batch])
         full_prompt = (
             base_prompt + "\n " + criterion + "\n" + papers_string + filter_postfix
         )
-        completion = call_chatgpt(full_prompt, "gpt-4")
-        cost = calc_price("gpt-4", completion.usage)
+        model = config["SELECTION"]["model"]
+        completion = call_chatgpt(full_prompt, openai_client, model)
+        cost += calc_price(model, completion.usage)
         out_text = completion.choices[0].message.content
         try:
             filtered_set = set(json.loads(out_text))
             for paper in batch:
                 if paper.arxiv_id not in filtered_set:
                     final_list.append(paper)
+                else:
+                    print("Filtered out paper " + paper.arxiv_id)
         except Exception as ex:
             print("Exception happened " + str(ex))
             print("Failed to parse LM output as list " + out_text)
@@ -181,7 +186,9 @@ def filter_by_gpt(
         if config["OUTPUT"].getboolean("debug_messages"):
             print(str(len(paper_list)) + " papers after hindex filtering")
         cost = 0
-        # paper_list, cost = filter_papers_by_title(paper_list, base_prompt, criterion)
+        paper_list, cost = filter_papers_by_title(
+            paper_list, config, openai_client, base_prompt, criterion
+        )
         if config["OUTPUT"].getboolean("debug_messages"):
             print(
                 str(len(paper_list))
@@ -243,8 +250,8 @@ if __name__ == "__main__":
     with open("configs/postfix_prompt.txt", "r") as f:
         postfix_prompt = f.read()
     # loads papers from 'in/debug_papers.json' and filters them
-    # with open("in/debug_papers.json", "r") as f:
-    with open("in/gpt_paper_batches.debug-11-10.json", "r") as f:
+    with open("in/debug_papers.json", "r") as f:
+        # with open("in/gpt_paper_batches.debug-11-10.json", "r") as f:
         paper_list_in_dict = json.load(f)
     papers = [
         [
